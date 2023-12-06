@@ -13,13 +13,18 @@ function searchMovies() {
     xhr.send();
 }
 
-function showMovieInfo(movieId) {
-    
+function showMovieInfo(movieId, lecteurLink) {
+    // Effectuer la requête AJAX pour obtenir les informations du film sélectionné
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var resultsDiv = document.getElementById("results");
             resultsDiv.innerHTML = xhr.responseText;
+
+            // Afficher le lecteur vidéo avec le lien approprié
+            var videoPlayer = document.getElementById("videoPlayer");
+            videoPlayer.src = lecteurLink;
+            videoPlayer.style.display = "block";
         }
     };
     

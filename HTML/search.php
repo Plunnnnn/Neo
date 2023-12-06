@@ -12,19 +12,41 @@ if ($conn->connect_error) {
 
 if (isset($_GET['title'])) {
     $movieTitle = $_GET['title'];
-    $sql = "SELECT * FROM movies WHERE titre = '$movieTitle'";
-    $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo "<p>Title: " . $row['titre'] . "</p>" . "<p>Description: " . $row['description'] . "</p>";
-            
-            
+    // Check for an exact match first
+    $exactMatchSQL = "SELECT * FROM movies WHERE titre = '$movieTitle'";
+    $exactMatchResult = $conn->query($exactMatchSQL);
+
+    if ($exactMatchResult->num_rows > 0) {
+        while ($row = $exactMatchResult->fetch_assoc()) {
+            echo "<p>Title: " . $row['titre'] . "</p>" . "<p>Description: " . $row['description'] . '</p>   <div class="reader-main"> <iframe id="reader" class="reader" width="1000" height="500" allowfullscreen="" src="' . $row['lecteur_link'] . '" style="display: block;"></iframe> </div>';
+
         }
     } else {
-        echo "pas d efilm trouvé";
+        // If no exact match, check using Levenshtein distance
+        $threshold = 3; // You can adjust the threshold as needed
+
+        $similarTitlesSQL = "SELECT * FROM movies";
+        $similarTitlesResult = $conn->query($similarTitlesSQL);
+
+        if ($similarTitlesResult) {  // Check if the query was successful
+            while ($row = $similarTitlesResult->fetch_assoc()) {
+                $distance = levenshtein($movieTitle, $row['titre']);
+
+                if ($distance <= $threshold) {
+                    echo "<p>Title: " . $row['titre'] . "</p>" . "<p>Description: " . $row['description'] . '</p>   <div class="reader-main"> <iframe id="reader" class="reader" width="1000" height="500" allowfullscreen="" src="' . $row['lecteur_link'] . '" style="display: block;"></iframe> </div>';
+
+                }
+            }
+        } else {
+            // Handle the case where the query was not successful
+            die("Erreur dans la requête SQL : " . $conn->error);
+        }
+
+        
     }
-    if (!$result) {
+
+    if (!$exactMatchResult) {
         die("Erreur dans la requête SQL : " . $conn->error);
     }
 }

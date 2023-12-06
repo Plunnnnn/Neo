@@ -26,7 +26,8 @@
                 overflow: hidden;
                 margin: 20px auto;
                 padding: 20px;
-                width: 70%; 
+                width: 70%;
+                height: 80vh;  /* Ajustement de la hauteur à 80% de la hauteur visible (viewport height) */
             }
     
             h2 {
@@ -90,6 +91,14 @@
                 border-radius: 5px;
                 margin-top: 10px;
             }
+            .reader-main {
+                flex-direction: column;
+                align-items: center;
+                margin: 0 auto;
+                max-width: 100%;
+                padding: 20px;
+            }
+
 
         </style>
         
@@ -97,14 +106,7 @@
 
     </head>
 <body>
-   
-
-
-
-
-
-
-
+    <!-- HTML existant... -->
 
     <header>
         <h1>NeoStream</h1>
@@ -118,18 +120,18 @@
         <section>
             <h2>Trending Movies</h2>
             <div class="trending-movies">
-                <div class="movie-card" onclick="showMovieInfo(1)">Movie 1</div>
-                
-                <div class="movie-card" onclick="showMovieInfo(13)">Movie 2</div>
-                <div class="movie-card" onclick="showMovieInfo(3)">Movie 3</div>
-                <div class="movie-card" onclick="showMovieInfo(4)">Movie 4</div>
-                <div class="movie-card" onclick="showMovieInfo(5)">Movie 5</div>
-                <div class="movie-card" onclick="showMovieInfo(6)">Movie 6</div>
-                <div class="movie-card" onclick="showMovieInfo(7)">Movie 7</div>
-                <div class="movie-card" onclick="showMovieInfo(8)">Movie 8</div>
+                <div class="movie-card" onclick="searchMovies(13)">Movie 1</div>
+                <div class="movie-card" onclick="searchMovies(1)">Movie 2</div>
+                <div class="movie-card" onclick="searchMovies(2)">Movie 3</div>
+                <div class="movie-card" onclick="searchMovies(3)">Movie 4</div>
+                <div class="movie-card" onclick="searchMovies(4)">Movie 5</div>
+                <div class="movie-card" onclick="searchMovies(455)">Movie 6</div>
+                <div class="movie-card" onclick="searchMovies(355)">Movie 7</div>
+                <div class="movie-card" onclick="searchMovies(425)">Movie 8</div>
                 <div id="results">Contenu des résultats</div>
-
-
+                <video id="videoPlayer" controls style="width: 100%; max-width: 800px; display: none;">
+                    Your browser does not support the video tag.
+                </video>
             </div>
         </section>
     </div>
@@ -140,8 +142,4 @@
 
     <script src="script.js"></script>
 </body>
-
-
-
-
 </html>

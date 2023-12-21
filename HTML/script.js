@@ -31,3 +31,10 @@ function showMovieInfo(movieId, lecteurLink) {
     xhr.open("GET", "search.php?movie_id=" + encodeURIComponent(movieId), true);
     xhr.send();
 }
+function redirectToPlayer(movieID) {
+    // Construct the URL with the movieID parameter
+    const playerURL = `player.html?movieID=${movieID}`;
+
+    // Redirect the user to the player.html page
+    window.location.href = playerURL;
+}

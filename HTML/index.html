@@ -90,14 +90,35 @@
                 padding: 10px;
                 border-radius: 5px;
                 margin-top: 10px;
-            }
-            .reader-main {
-                flex-direction: column;
                 align-items: center;
-                margin: 0 auto;
-                max-width: 100%;
-                padding: 20px;
             }
+            
+            
+            .scroller {
+                width: 800px;
+                height: 600px;
+                overflow-y: scroll;
+                scrollbar-color: rebeccapurple rgb(85, 56, 56);
+                scrollbar-width: thin;
+                }
+            .movie {
+                display: flex;
+                margin-bottom: 20px;
+                background-color: #ffffff32;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .image-container {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start; 
+                padding: 15px;
+            }
+
+            .image-container img {
+                max-width: 100px;
+    }
 
 
         </style>
@@ -106,12 +127,14 @@
 
     </head>
 <body>
-    <!-- HTML existant... -->
 
     <header>
         <h1>NeoStream</h1>
     </header>
-
+    <script> 
+    
+    
+    </script>
     <div class="container">
         <div class="search-bar">
             <input type="text" id="movieTitle" placeholder="Search for movies...">
@@ -128,16 +151,17 @@
                 <div class="movie-card" onclick="searchMovies(455)">Movie 6</div>
                 <div class="movie-card" onclick="searchMovies(355)">Movie 7</div>
                 <div class="movie-card" onclick="searchMovies(425)">Movie 8</div>
-                <div id="results">Contenu des résultats</div>
-                <video id="videoPlayer" controls style="width: 100%; max-width: 800px; display: none;">
-                    Your browser does not support the video tag.
-                </video>
+                <div id="results" class="scroller">Contenu des résultats</div>
+
+                    
+                
+                
             </div>
         </section>
     </div>
 
     <footer>
-        <p>&copy; 2023 NeoStream. All rights reserved.</p>
+        <p>&copy; 2023 NeoStream. No rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>

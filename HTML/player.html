@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details - NeoStream</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+
+        header, footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #333;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px auto;
+            padding: 20px;
+            width: 70%;
+            height: 80vh;
+            display: flex; /* Use flex display */
+            flex-direction: column; /* Stack children vertically */
+        }
+
+        h1, h2 {
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .movie-details {
+            display: flex;
+            background-color: #ffffff32;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: auto; /* Push the container to the bottom of .container */
+            padding: 20px;
+        }
+
+        .movie-details img {
+            max-width: 200px;
+            border-radius: 8px 0 0 8px;
+        }
+
+        .details {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .details h2 {
+            margin-top: 0;
+        }
+
+        .details p {
+            margin-bottom: 10px;
+        }
+        .player-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .player {
+            width: 100%;
+            max-width: 800px;
+            height: 500px; /* Adjust the height as needed */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html">NeoStream</a>
+    </header>
+    
+    <h1 id="movieTitle">Loading...</h1>
+    
+
+    <div class="container">
+        <div class="player-container">
+            <iframe id="reader" class="player" width="100%" height="100%" allowfullscreen="" src="lien" style="display: block;"></iframe>
+        </div>
+
+        <div class="movie-details">
+            <img src="path/to/poster.jpg" alt="Movie Poster" id="poster">
+
+            <div class="details" id="movieDetails">
+                
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 NeoStream. No rights reserved.</p>
+    </footer>
+
+    <script>
+        function getQueryParam(parameter) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(parameter);
+        }
+
+        const movieID = getQueryParam('movieID');
+
+        // Fetch movie details from the server
+        fetch(`get_player_info.php?movieID=${movieID}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Update the content with the retrieved movie details
+                const movieDetailsElement = document.getElementById('movieDetails');
+                movieDetailsElement.innerHTML = `
+                    
+                    <p>Description: ${data.description}</p>
+                    <p>Cast: ${data.cast}</p>
+                    <p>Director: ${data.director}</p>
+                    <p>Ratings: ${data.ratings}</p>
+                    <p>Movie Time: ${data.time}</p>
+                    <p>Categories: ${data.categories}</p>
+                    <p>Release Date: ${data.sortie}</p>
+                    <!-- Add additional details as needed -->
+                `;
+
+                
+                const movieTitleElement = document.getElementById('movieTitle');
+                movieTitleElement.textContent = data.titre;
+                
+                const Movieposter = document.getElementById('poster')
+                Movieposter.src = data.poster
+                const lecteur_link = document.getElementById("reader")
+                lecteur_link.src = data.lecteur_link
+                
+            })
+            .catch(error => console.error('Error fetching movie details:', error));
+    </script>
+</body>
+</html>

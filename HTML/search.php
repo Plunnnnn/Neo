@@ -19,31 +19,45 @@ if (isset($_GET['title'])) {
 
     if ($exactMatchResult->num_rows > 0) {
         while ($row = $exactMatchResult->fetch_assoc()) {
-            echo "<p>Title: " . $row['titre'] . "</p>" . "<p>Description: " . $row['description'] . '</p>   <div class="reader-main"> <iframe id="reader" class="reader" width="1000" height="500" allowfullscreen="" src="' . $row['lecteur_link'] . '" style="display: block;"></iframe> </div>';
-
+            echo "<div class='movie'>";
+            echo "<div class='image-container'>";
+            echo "<img src='{$row['poster']}' alt='{$row['titre']}'>";
+            echo "<a href='player.html?movieID={$row['movieid']}'>";
+            echo "</div>";
+            echo "<div class='details'>";
+            echo "<h3>{$row['titre']}</h3>";
+            echo "<p>{$row['description']}</p>";
+            echo "<p>Note: {$row['ratings']}</p>"; // Ajout de la section de la note
+            echo "</div>";
+            echo "</div>";
         }
     } else {
-        // If no exact match, check using Levenshtein distance
-        $threshold = 3; // You can adjust the threshold as needed
+        $threshold = 3; // MARGE D'ERREUR
 
         $similarTitlesSQL = "SELECT * FROM movies";
         $similarTitlesResult = $conn->query($similarTitlesSQL);
 
-        if ($similarTitlesResult) {  // Check if the query was successful
+        if ($similarTitlesResult) {
             while ($row = $similarTitlesResult->fetch_assoc()) {
                 $distance = levenshtein($movieTitle, $row['titre']);
 
                 if ($distance <= $threshold) {
-                    echo "<p>Title: " . $row['titre'] . "</p>" . "<p>Description: " . $row['description'] . '</p>   <div class="reader-main"> <iframe id="reader" class="reader" width="1000" height="500" allowfullscreen="" src="' . $row['lecteur_link'] . '" style="display: block;"></iframe> </div>';
-
+                    echo "<div class='movie'>";
+                    echo "<div class='image-container'>";
+                    echo "<img src='{$row['poster']}' alt='{$row['titre']}'>";
+                    echo "<a href='player.html?movieID={$row['movieid']}'>";
+                    echo "</div>";
+                    echo "<div class='details'>";
+                    echo "<h3>{$row['titre']}</h3>";
+                    echo "<p>{$row['description']}</p>";
+                    echo "<p>Note: {$row['ratings']}</p>"; // Ajout de la section de la note
+                    echo "</div>";
+                    echo "</div>";
                 }
             }
         } else {
-            // Handle the case where the query was not successful
             die("Erreur dans la requête SQL : " . $conn->error);
         }
-
-        
     }
 
     if (!$exactMatchResult) {

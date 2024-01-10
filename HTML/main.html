@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NeoStream</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #000;
+                color: #fff;
+            }
+    
+            header, footer {
+                background-color: #333;
+                color: #fff;
+                padding: 10px;
+                text-align: center;
+            }
+    
+            .container {
+                background-color: #333;
+                border-radius: 15px;
+                overflow: hidden;
+                margin: 20px auto;
+                padding: 20px;
+                width: 70%;
+                height: 80vh;  /* Ajustement de la hauteur à 80% de la hauteur visible (viewport height) */
+            }
+    
+            h2 {
+                text-align: center;
+                font-size: 24px;
+            }
+    
+            footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+            }
+    
+            .search-bar {
+                text-align: center;
+                margin-bottom: 20px;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+    
+            input[type="text"] {
+                background-color: #4d4c4c;
+                color: #ddd1d1;
+                width: 60%;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+    
+            button {
+                padding: 10px 20px;
+                background-color: #555;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                
+            }
+    
+            .trending-movies {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+    
+            .movie-card {
+                background-color: #444;
+                border-radius: 10px;
+                margin: 10px;
+                padding: 15px;
+                width: 45%; 
+            }
+
+            .result-details {
+                display: none;
+                background-color: #555;
+                color: #fff;
+                padding: 10px;
+                border-radius: 5px;
+                margin-top: 10px;
+                align-items: center;
+            }
+            
+            
+            .scroller {
+                width: 800px;
+                height: 600px;
+                overflow-y: scroll;
+                scrollbar-color: rebeccapurple rgb(85, 56, 56);
+                scrollbar-width: thin;
+                }
+            .movie {
+                display: flex;
+                margin-bottom: 20px;
+                background-color: #ffffff32;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .image-container {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start; 
+                padding: 15px;
+            }
+
+            .image-container img {
+                max-width: 100px;
+    }
+
+
+        </style>
+        
+
+
+    </head>
+<body>
+
+    <header>
+        <h1>NeoStream</h1>
+    </header>
+    <script> 
+    
+    
+    </script>
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="movieTitle" placeholder="Search for movies...">
+            <button onclick="searchMovies()">Search</button>
+        </div>
+        <section>
+            <h2>Trending Movies</h2>
+            <div class="trending-movies">
+                <div class="movie-card" onclick="searchMovies(13)">Movie 1</div>
+                <div class="movie-card" onclick="searchMovies(1)">Movie 2</div>
+                <div class="movie-card" onclick="searchMovies(2)">Movie 3</div>
+                <div class="movie-card" onclick="searchMovies(3)">Movie 4</div>
+                <div class="movie-card" onclick="searchMovies(4)">Movie 5</div>
+                <div class="movie-card" onclick="searchMovies(455)">Movie 6</div>
+                <div class="movie-card" onclick="searchMovies(355)">Movie 7</div>
+                <div class="movie-card" onclick="searchMovies(425)">Movie 8</div>
+                <div id="results" class="scroller">Contenu des résultats</div>
+
+                    
+                
+                
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 NeoStream. No rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

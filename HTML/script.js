@@ -38,3 +38,24 @@ function redirectToPlayer(movieID) {
     // Redirect the user to the player.html page
     window.location.href = playerURL;
 }
+
+function performAjaxRequest() {
+    $.ajax({
+        type: 'POST',
+        url: 'login.php', // Remplacez par le chemin correct vers votre script PHP
+        dataType: 'json',
+        success: function(response) {
+            // Vérifiez la réponse du serveur
+            if (response.status === 'success') {
+                
+            } else {
+                // Gérez les erreurs ou d'autres scénarios ici
+                console.error('Échec de l\'opération :', response.message);
+            }
+        },
+        error: function(xhr, status, error) {
+            // Gérez les erreurs AJAX ici
+            console.error('Erreur AJAX :', status, error);
+        }
+    });
+}

@@ -22,7 +22,7 @@ conn = mysql.connector.connect(**config)
 cursor = conn.cursor()
 
 # URL and headers for IMDb scraping
-header = {
+headerss = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
 }
 url = "https://www.imdb.com/chart/top/?ref_=nv_mv_250"

@@ -3,7 +3,7 @@ import requests
 import json
 import mysql.connector
 
-# Your database query
+# Your datassbase query
 query = """
         INSERT INTO movies (movieid, titre, lecteur_link, description, categories, poster, sortie, director, cast, time, ratings)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)

@@ -1,9 +1,9 @@
 function searchMovies() {
     var movieTitle = document.getElementById("movieTitle").value;
-    // Effectuer la requête AJAX
+   
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
+        if (xhr.readyState === 4 && xhr.status === 200) {            //Places les resulat ans le ag results
             var resultsDiv = document.getElementById("results");
             resultsDiv.innerHTML = xhr.responseText;
         }
@@ -14,15 +14,15 @@ function searchMovies() {
 }
 
 function showMovieInfo(movieId, lecteurLink) {
-    // Effectuer la requête AJAX pour obtenir les informations du film sélectionné
+   
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var resultsDiv = document.getElementById("results");
             resultsDiv.innerHTML = xhr.responseText;
 
-            // Afficher le lecteur vidéo avec le lien approprié
-            var videoPlayer = document.getElementById("videoPlayer");
+            
+            var videoPlayer = document.getElementById("videoPlayer");  //places les infos pour lire ue video
             videoPlayer.src = lecteurLink;
             videoPlayer.style.display = "block";
         }
@@ -32,30 +32,27 @@ function showMovieInfo(movieId, lecteurLink) {
     xhr.send();
 }
 function redirectToPlayer(movieID) {
-    // Construct the URL with the movieID parameter
+    
     const playerURL = `player.html?movieID=${movieID}`;
 
-    // Redirect the user to the player.html page
+    
     window.location.href = playerURL;
 }
 
 function performAjaxRequest() {
     $.ajax({
         type: 'POST',
-        url: 'login.php', // Remplacez par le chemin correct vers votre script PHP
+        url: 'login.php', 
         dataType: 'json',
         success: function(response) {
-            // Vérifiez la réponse du serveur
+            
             if (response.status === 'success') {
                 
             } else {
-                // Gérez les erreurs ou d'autres scénarios ici
+                
                 console.error('Échec de l\'opération :', response.message);
             }
         },
-        error: function(xhr, status, error) {
-            // Gérez les erreurs AJAX ici
-            console.error('Erreur AJAX :', status, error);
-        }
+        
     });
 }

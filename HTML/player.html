@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Details - NeoStream</title>
+    <title>Movie Details - Palestream</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,9 +28,9 @@
             padding: 20px;
             width: 70%;
             height: 80vh;
-            display: flex; /* Use flex display */
-            flex-direction: column; /* Stack children vertically */
-        }
+            display: flex; 
+            flex-direction: column;
+        } 
 
         h1, h2 {
             text-align: center;
@@ -42,7 +42,7 @@
             background-color: #ffffff32;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: auto; /* Push the container to the bottom of .containsser */
+            margin-top: auto; 
             padding: 20px;
         }
 
@@ -73,13 +73,13 @@
         .player {
             width: 100%;
             max-width: 800px;
-            height: 500px; /* Adjust the height as needed */
+            height: 500px; 
         }
     </style>
 </head>
 <body>
     <header>
-        <a href="index.html">NeoStream</a>
+        <a href="main.html">Palestream</a>
     </header>
     
     <h1 id="movieTitle">Loading...</h1>
@@ -100,7 +100,7 @@
     </div>
     
     <footer>
-        <p>&copy; 2023 NeoStream. No rights reserved.</p>
+        <p>&copy; 2023 Palestream. No rights reserved.</p>
     </footer>
 
     <script>
@@ -111,16 +111,14 @@
 
         const movieID = getQueryParam('movieID');
 
-        // Fetch movie details from the server
+        
         fetch(`get_player_info.php?movieID=${movieID}`)
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+                
                 return response.json();
             })
             .then(data => {
-                // Update the content with the retrieved movie details
+               
                 const movieDetailsElement = document.getElementById('movieDetails');
                 movieDetailsElement.innerHTML = `
                     
@@ -131,7 +129,7 @@
                     <p>Movie Time: ${data.time}</p>
                     <p>Categories: ${data.categories}</p>
                     <p>Release Date: ${data.sortie}</p>
-                    <!-- Add additional details as needed -->
+                   
                 `;
 
                 
@@ -144,7 +142,7 @@
                 lecteur_link.src = data.lecteur_link
                 
             })
-            .catch(error => console.error('Error fetching movie details:', error));
+            .catch(error => console.error('DB down ?:', error));
     </script>
 </body>
 </html>

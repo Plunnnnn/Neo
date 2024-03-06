@@ -1,5 +1,5 @@
 <?php
-$servername = "mediadb.czpusmrdxalt.eu-north-1.rds.amazonaws.com";
+$servername = "moviedb.ch0eymmkwcev.eu-west-3.rds.amazonaws.com";
 $username = "basmoussent";
 $password = "zsedLOKI:123!";
 $dbname = "MovieDB";
@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 if (isset($_GET['title'])) {
     $movieTitle = $_GET['title'];
 
-    // Check for an exact match first
+    
     $exactMatchSQL = "SELECT * FROM movies WHERE titre = '$movieTitle'";
     $exactMatchResult = $conn->query($exactMatchSQL);
 
@@ -21,13 +21,13 @@ if (isset($_GET['title'])) {
         while ($row = $exactMatchResult->fetch_assoc()) {
             echo "<div class='movie'>";
             echo "<div class='image-container'>";
-            echo "<img src='{$row['poster']}' alt='{$row['titre']}'>";
+            echo "<img src='{$row['poster']}' alt='{$row['titre']}'>"; //retourne tout pour les placer das movie infos
             echo "<a href='player.html?movieID={$row['movieid']}'>";
             echo "</div>";
             echo "<div class='details'>";
             echo "<h3>{$row['titre']}</h3>";
             echo "<p>{$row['description']}</p>";
-            echo "<p>Note: {$row['ratings']}</p>"; // Ajout de la section de la note
+            echo "<p>Note: {$row['ratings']}</p>"; 
             echo "</div>";
             echo "</div>";
         }
@@ -46,22 +46,22 @@ if (isset($_GET['title'])) {
                     echo "<div class='image-container'>";
                     echo "<img src='{$row['poster']}' alt='{$row['titre']}'>";
                     echo "<a href='player.html?movieID={$row['movieid']}'>";
-                    echo "</div>";
+                    echo "</div>";                                             //retourne tout pour les placer das movie infos
                     echo "<div class='details'>";
                     echo "<h3>{$row['titre']}</h3>";
                     echo "<p>{$row['description']}</p>";
-                    echo "<p>Note: {$row['ratings']}</p>"; // Ajout de la section de la note
+                    echo "<p>Note: {$row['ratings']}</p>"; 
                     echo "</div>";
                     echo "</div>";
                 }
             }
         } else {
-            die("Erreur dans la requête SQL : " . $conn->error);
+            die("DB down ? : " . $conn->error);
         }
     }
 
     if (!$exactMatchResult) {
-        die("Erreur dans la requête SQL : " . $conn->error);
+        die("DB down ? : " . $conn->error);
     }
 }
 

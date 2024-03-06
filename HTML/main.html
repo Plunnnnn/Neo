@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>NeoStream</title>
+        <title>Palestream</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -12,12 +12,22 @@
                 background-color: #000;
                 color: #fff;
             }
-    
-            header, footer {
+            header {
+                display: flex;
+                align-items: center; 
+                justify-content: center; 
+                height: 100px; 
                 background-color: #333;
                 color: #fff;
                 padding: 10px;
                 text-align: center;
+            }
+            footer {
+                background-color: #333;
+                color: #fff;
+                padding: 10px;
+                text-align: center;
+                justify-content: flex-start
             }
     
             .container {
@@ -27,7 +37,7 @@
                 margin: 20px auto;
                 padding: 20px;
                 width: 70%;
-                height: 80vh;  /* Ajustement de la hauteur à 80% de la hauteur visible (viewport height) */
+                height: 80vh; 
             }
     
             h2 {
@@ -98,7 +108,7 @@
                 width: 800px;
                 height: 600px;
                 overflow-y: scroll;
-                scrollbar-color: rebeccapurple rgb(85, 56, 56);
+                scrollbar-color: rgb(220, 219, 222) rgb(11, 1, 1);
                 scrollbar-width: thin;
                 }
             .movie {
@@ -118,9 +128,25 @@
 
             .image-container img {
                 max-width: 100px;
-    }
-
-
+            
+            }
+            
+            
+            .poem {
+            overflow: scroll;
+            scrollbar-color: red rgb(0, 0, 0);
+            scrollbar-width: thin;
+            }
+            .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+            }
+            img.logo {
+                max-width: 10%;
+                height: auto; 
+            }
         </style>
         
 
@@ -129,13 +155,15 @@
 <body>
 
     <header>
-        <h1>NeoStream</h1>
+        <img src="logo.png" alt="logo" class="logo" height="100%" width="100%"  >
+        
+        
     </header>
     <script> 
     
     
     </script>
-    <div class="container">
+    <div class="container poem">
         <div class="search-bar">
             <input type="text" id="movieTitle" placeholder="Search for movies...">
             <button onclick="searchMovies()">Search</button>
@@ -161,7 +189,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2023 NeoStream. No rights reserved.</p>
+        <p>&copy; 2023 Palestream. No rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
